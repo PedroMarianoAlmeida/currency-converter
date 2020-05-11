@@ -40,26 +40,34 @@ class CurrencyConverter extends React.Component {
         usd
       });
     }
-    
+
     render() {
-      const { rate, usd, euro } = this.state;
-      return (
-        <div className="container">
-          <div className="text-center p-3 mb-2">
-            <h2 className="mb-2">Currency Converter</h2>
-            <h4>USD 1 : {rate} EURO</h4>
-          </div>
-          <div className="row text-center">
-            <div className="col-12">
-              <span className="mr-1">USD</span>
-              <input value={usd} onChange={this.handleUsdChange} type="number" />
-              <span className="mx-3">=</span>
-              <input value={euro} onChange={this.handleEuroChange} type="number" />
-              <span className="ml-1">EURO</span>
+        const { rate, usd, euro } = this.state;
+        return (
+          <div className="container">
+            <div className="text-center p-3 mb-2">
+              <h2 className="mb-2">Currency Converter</h2>
+              <h4>USD 1 : {rate} EURO</h4>
+            </div>
+            <div className="row text-center">
+              <div className="col-12">
+                <span className="mr-1">USD</span>
+                <CurrencyInput value={usd} handleChange={this.handleUsdChange} />
+                <span className="mx-3">=</span>
+                <CurrencyInput value={euro} handleChange={this.handleEuroChange} />
+                <span className="ml-1">EURO</span>
+              </div>
             </div>
           </div>
-        </div>
-      )
+        )
+      }
+}
+
+
+class CurrencyInput extends React.Component {
+    render() {
+      const { value, handleChange } = this.props;
+      return <input value={value} onChange={handleChange} type="number" />
     }
 }
 
